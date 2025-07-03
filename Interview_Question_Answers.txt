@@ -1,0 +1,57 @@
+
+JAVA JDBC – Employee Database App
+Interview Questions – Answers
+---------------------------------------
+
+1. What is JDBC?
+JDBC (Java Database Connectivity) is an API in Java that allows Java applications to interact with databases using SQL.
+
+2. What is PreparedStatement?
+A PreparedStatement is a precompiled SQL statement. It improves performance and protects against SQL injection by using placeholders (?) for values.
+
+3. Difference between Statement and PreparedStatement?
+| Statement             | PreparedStatement         |
+|----------------------|---------------------------|
+| Slower, compiles every time | Faster, precompiled        |
+| Prone to SQL injection      | Prevents SQL injection     |
+| Hard to manage user input   | Easy with placeholders     |
+
+4. How do you handle SQL exceptions?
+By wrapping database code in a try-catch block and catching SQLException. Log the error, rollback if needed, or show a user-friendly message.
+
+5. How to prevent SQL Injection?
+Use PreparedStatement instead of Statement. PreparedStatement safely handles input values and avoids direct SQL string concatenation.
+
+6. What is JDBC DriverManager?
+DriverManager manages JDBC drivers. It establishes a connection between the Java application and the database.
+
+Example:
+Connection con = DriverManager.getConnection(url, user, password);
+
+7. How to close connections?
+Always close Connection, Statement, and ResultSet in finally block or use try-with-resources.
+
+try (Connection con = ...) {
+   // logic
+} catch (SQLException e) {
+   // handle
+}
+
+8. What is a ResultSet?
+ResultSet holds the result of a SQL SELECT query. You can iterate over rows using next() and retrieve columns using getInt(), getString(), etc.
+
+9. What is auto-commit in JDBC?
+Auto-commit is true by default. Each SQL operation is committed instantly. You can turn it off and manually commit or rollback.
+
+con.setAutoCommit(false);
+con.commit();
+
+10. How to connect Java to MySQL?
+- Add JDBC driver (MySQL Connector/J).
+- Use DriverManager.getConnection() with URL, username, and password.
+
+Example:
+String url = "jdbc:mysql://localhost:3306/db_name";
+String user = "root";
+String pass = "your_password";
+Connection con = DriverManager.getConnection(url, user, pass);
